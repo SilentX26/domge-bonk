@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+body { font-family: 'Akaya Kanadaka', cursive; }
+
+/* custom cursor when user is playing */
+body.is-play {
+    cursor: url(assets/cursor.png), auto;
+}
+
+.container {
+    padding-top: 30px;
+    text-align: center;
+}
+
+.wm {
+    margin: 0 auto;
+    font-weight: bold;
+    color: #f3d82a;
+}
+
+/* game info */
+.game-info {
+    font-size: 30px;
+    color: #F9B208;
+}
+
+.game-info .score-container {
+    font-size: inherit;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+.game-info #score, #timer { font-weight: bold; }
+
+.game-info .timer-container {
+    font-size: inherit;
+    font-weight: normal;
+    margin-top: 0px;
+}
+
+.game-info .controller {
+    color: #ff7500;
+    margin-top: 20px;
+}
+.game-info .controller i { cursor: pointer; }
+
+/* game area */
+.game-area {
+    display: flex;
+    width: 80%;
+    margin: 60px auto;
+    justify-content: space-around;
+}
+
+.game-area .domge {
+    height: 140px;
+    width: 140px;
+    background-color: #F9B208;
+    border-radius: 100%;
+    margin-right: 40px;
+    border: 10px solid #F98404;
+    box-shadow: 0px 1px 10px #fda504;
+}
+
+.game-area .domge img {
+    width: 80px;
+    margin: auto;
+    margin-top: 14px;
+    transform: translateY(10px);
+    transition: transform 1.5s;
+    opacity: 0;
+}
+.game-area .domge img.bonk { margin-top: 38px; }
+
+.game-area .domge img.show {
+    transform: translateY(0);
+    opacity: 1;
+}
