@@ -11,12 +11,6 @@ body.is-play {
     text-align: center;
 }
 
-.wm {
-    margin: 0 auto;
-    font-weight: bold;
-    color: #f3d82a;
-}
-
 /* game info */
 .game-info {
     font-size: 30px;
@@ -55,22 +49,31 @@ body.is-play {
     width: 140px;
     background-color: #F9B208;
     border-radius: 100%;
-    margin-right: 40px;
     border: 10px solid #F98404;
     box-shadow: 0px 1px 10px #fda504;
 }
+.game-area .domge:not(:last-child) { margin-right: 40px; }
 
-.game-area .domge img {
-    width: 80px;
+.game-area .domge div {
+    width: 105px;
+    height: 120px;
     margin: auto;
-    margin-top: 14px;
+    margin-top: 4px;
     transform: translateY(10px);
     transition: transform 1.5s;
+    display: inline-block;
     opacity: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
-.game-area .domge img.bonk { margin-top: 38px; }
+.game-area .domge div.bonk {
+    width: 125px;
+    margin-top: 20px;
+    height: 110px;
+}
 
-.game-area .domge img.show {
+.game-area .domge div.show {
     transform: translateY(0);
     opacity: 1;
 }

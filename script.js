@@ -6,6 +6,9 @@ const domgeSpeed = 1; // in seconds
 const imgDomgeName = "domge.png";
 const imgBonkName = "domge-bonk.png";
 
+const backsound = new Audio('assets/backsound.mp3');
+const sfxBonk = new Audio('assets/sfx-bonk.mp3');
+
 const $gameTimer = $("#timer");
 const $gameScore = $("#score");
 const $gameController = $(".controller i");
@@ -27,8 +30,8 @@ const addScore = () => {
 
 const hideDomge = (domgeNo) => {
     setTimeout(() => {
-        $(`#domge-${domgeNo} img`).attr({
-            src: "",
+        $(`#domge-${domgeNo} div`).attr({
+            style: "",
             class: ""
         });
     }, (domgeSpeed * 1000));
@@ -36,8 +39,8 @@ const hideDomge = (domgeNo) => {
 
 const showDomge = () => {
     var domgeNo = _randomNumberRange(1, 8);
-    $(`#domge-${domgeNo} img`).attr({
-        src: `assets/${imgDomgeName}`,
+    $(`#domge-${domgeNo} div`).attr({
+        style: `background-image: url('assets/${imgDomgeName}');`,
         class: "show"
     });
 
@@ -46,6 +49,7 @@ const showDomge = () => {
 
 const setGameController = (mode) => {
     var _icon = (mode == "stop") ? "play" : "pause";
+
     $gameController.attr("class", `fas fa-${_icon}-circle fa-2x`);
     $gameController.attr("title", _icon);
 }
@@ -54,10 +58,12 @@ const resetGame = () => {
     $gameScore.html('0');
     $gameTimer.html(gameDuration);
     currentDuration = gameDuration;
+    backsound.currentTime = 0;
     startGame();
 }
 
 const stopGame = () => {
+    backsound.pause();
     clearInterval(intervalGame);
     clearInterval(intervalDomge);
     setGameController("stop");
@@ -76,8 +82,8 @@ const runGame = () => {
 const startGame = () => {
     $("body").addClass("is-play");
     setGameController("play");
-
-    runGame();
+    backsound.play();
+    
     intervalGame = setInterval(runGame, 1000);
     intervalDomge = setInterval(showDomge, (domgeSpeed * 1000));
 }
@@ -103,7 +109,6 @@ $( function() {
 
     $gameController.click( function() {
         var gameMode = getGameMode();
-        console.log(gameMode);
         switch(gameMode) {
             case 'start':
                 startGame();
@@ -122,16 +127,22 @@ $( function() {
 
     $(document).on("click", ".domge", function() {
         const $this = $(this);
-        const $img = $this.find("img");
+        const $div = $this.find("div");
 
-        if( !$img.hasClass("show") ) {
+        if( !$div.hasClass("show") ) {
             return false;
         }
 
-        $img.attr({
-            src: `assets/${imgBonkName}`,
+        
+        $div.attr({
+            style: `background-image: url('assets/${imgBonkName}');`,
             class: "show bonk"
         });
+
+        // if(sfxBonk.paused) {
+            sfxBonk.currentTime = 4;
+            sfxBonk.play();
+        // }
 
         addScore();
         hideDomge($this.attr("id"));
