@@ -1,0 +1,32 @@
+/* mobile */
+@media(max-width: 576px) {
+    .game-area .domge:last-child { display: none; }
+    .game-area .domge:nth-child(3) { margin-right: 0!important; }
+    
+    .game-area .domge {
+        height: 70px;
+        width: 70px;
+        margin-right: 20px!important;
+    }
+
+    .game-area .domge div, .game-area .domge div.bonk {
+        width: 70px;
+        height: 70px;
+        margin-top: 2px;
+    }
+}
+
+/* tablet */
+@media(min-width: 576px) and (max-width: 992px) {
+    .game-area .domge:not(:last-child) { margin-right: 30px; }
+    .game-area .domge {
+        height: 110px;
+        width: 110px;
+    }
+
+    .game-area .domge div, .game-area .domge div.bonk {
+        width: 100px;
+        height: 110px;
+        margin-top: 4px;
+    }
+}
